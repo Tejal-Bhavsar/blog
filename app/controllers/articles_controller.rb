@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
-   
+  before_action :authenticate_user!
+  
   def index
     @articles = Article.all
+    @comments = Comment.all
   end
       
   def show
     @article = Article.find(params[:id])
+    @comments = @article.comments
   end
       
       
@@ -24,8 +27,6 @@ class ArticlesController < ApplicationController
     else
       render 'new'
     end
-    @article.user = current_user
-    @article.save
   end
 
   def update
@@ -46,13 +47,9 @@ class ArticlesController < ApplicationController
   end     
   private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text,:user_id)
   end
-
-  def authentication_check
-    authenticate_or_request_with_http_basic do |user, password|
-     user == "dhh" && password ==  "secrete"
-    end   
-  end
+  
+   
    
 end

@@ -1,3 +1,5 @@
+<body>
+<div class="container2">
 <%= form_with model: @article, local: true do |form| %>
  
     <% if @article.errors.any? %>
@@ -13,8 +15,10 @@
         </ul>
       </div>
     <% end %>
-   
-    <p>
+    
+    
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <p> 
       <%= form.label :title %><br>
       <%= form.text_field :title %>
     </p>
@@ -29,3 +33,5 @@
     </p>
    
   <% end %>
+  </div>
+  </body>
