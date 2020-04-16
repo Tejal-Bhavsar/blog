@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_last_seen_at, if: proc { user_signed_in? }
   
   def index
     @articles = Article.all
     @comments = Comment.all
+    @users    = User.all
   end
       
   def show
@@ -50,6 +51,9 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :text,:user_id)
   end
   
-   
+  private
+  def set_last_seen_at
+    current_user.update_attribute(:last_seen_at, Time.now )
+  end
    
 end
