@@ -1,0 +1,11 @@
+xlsx_package = Axlsx::Package.new()
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Users") do |sheet|
+  # Create the header row
+  sheet.add_row ["User Id", "User Email","User Article", "User Last seen"]
+  # Create entries for each item
+  @users.each do |user|
+    sheet.add_row [user.id, user.email, user.articles, user.last_seen_at]
+  end
+end

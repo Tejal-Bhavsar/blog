@@ -19,6 +19,9 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 gem 'sinatra'
+ 
+ 
+gem 'caxlsx_rails'
   
 
 gem 'devise'
