@@ -13,7 +13,12 @@ class User < ApplicationRecord
       columns = ["id", "email", "last_seen_at", "articles"]
       csv << columns
       all.each do |user|
-        row = [ user.id, user.email, user.last_seen_at, user.articles.pluck(:title)]
+        if user.articles.length == 0
+          articles_title = ""
+        else
+          articles_title =  user.articles.pluck(:title).join(",") 
+        end
+        row = [ user.id, user.email, user.last_seen_at, articles_title]
         csv << row
 
       end
