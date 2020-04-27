@@ -2,7 +2,10 @@
 <div class="container">
  <h1>welcome to the Blog App!</h1>
 
-<%= link_to 'My Blog', controller: 'articles' %>
+ <% if user_signed_in? %>
+
+<%= link_to "My Blog", controller: "articles" %>
+<% end %>
 </div>
 
  
