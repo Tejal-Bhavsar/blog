@@ -257,6 +257,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.7)
   jquery-rails
+  listen
   pg
   prettier
   puma (~> 4.1)
